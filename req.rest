@@ -1,0 +1,17 @@
+GET http://localhost:4500/api/deployments/get
+
+###
+POST http://localhost:4500/api/deployments/add
+Content-Type: application/json
+
+{
+  "deployment": 
+  {
+    "url": "http://google.com",
+    "templateName": "temperory templateName 2",
+    "version": "1.0.2, 2.0.1"
+  }
+}
+
+###
+DELETE  http://localhost:4500/api/deployments/delete/5ea933e1c9cf252bc632ae6b
