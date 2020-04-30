@@ -15,6 +15,8 @@ const DeploymentForm = () => {
   };
 
   const [state, setState] = useState(initialState);
+  const [validated, setValidated] = useState(false);
+
 
   const onChangeHandler = (e) => {
     setState({
@@ -24,13 +26,20 @@ const DeploymentForm = () => {
   };
 
   const onSubmitHandler = (e) => {
+    const form = e.currentTarget;
     e.preventDefault();
-    dispatch(addDeployment(state));
-    setState(initialState);
+    setValidated(true)
+    if (form.checkValidity() === false) {
+      e.stopPropagation();
+    }
+    else {
+      dispatch(addDeployment(state));
+      setState(initialState);
+    }
   };
 
   return (
-    <Form onSubmit={onSubmitHandler}>
+    <Form noValidate onSubmit={onSubmitHandler} validated={validated}>
       <fieldset>
         <legend>Add Deployment</legend>
         <Form.Group>
@@ -41,7 +50,12 @@ const DeploymentForm = () => {
             id="url"
             value={state.url}
             onChange={onChangeHandler}
+            required
           />
+          <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+          <Form.Control.Feedback type="invalid">
+            Please enter valid URL!
+          </Form.Control.Feedback>
           {errors.url && <span className="error">{errors.url}</span>}
         </Form.Group>
 
@@ -51,9 +65,14 @@ const DeploymentForm = () => {
             type="text"
             placeholder="Enter Template"
             id="templateName"
+            minLength="3"
             value={state.templateName}
             onChange={onChangeHandler}
+            required
           />
+          <Form.Control.Feedback type="invalid">
+            Please enter valid name!
+          </Form.Control.Feedback>
           {errors.templateName && (
             <span className="error">{errors.templateName}</span>
           )}
@@ -67,9 +86,14 @@ const DeploymentForm = () => {
             type="text"
             placeholder="Enter version(s)"
             id="version"
+            minLength="4"
             value={state.version}
             onChange={onChangeHandler}
+            required
           />
+          <Form.Control.Feedback type="invalid">
+            Invalid Version!
+          </Form.Control.Feedback>
           {errors.version && <span className="error">{errors.version}</span>}
         </Form.Group>
 
