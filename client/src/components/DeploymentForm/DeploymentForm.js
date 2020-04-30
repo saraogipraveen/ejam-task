@@ -65,6 +65,7 @@ const DeploymentForm = () => {
             type="text"
             placeholder="Enter Template"
             id="templateName"
+            pattern="^[a-zA-Z ]*$"
             minLength="3"
             value={state.templateName}
             onChange={onChangeHandler}
