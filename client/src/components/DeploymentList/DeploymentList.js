@@ -1,18 +1,19 @@
 import React, { useEffect } from "react";
-import { connect, useSelector } from "react-redux";
+import {  useSelector, useDispatch } from "react-redux";
 import {
   getDeployments,
   removeDeployment,
-} from "../../redux/actions/deploymentActions";
+} from "../../redux/actions/DeploymentAction";
 import { Accordion, Card, Button } from "react-bootstrap";
 
-const DeploymentList = ({ getDeployments, removeDeployment }) => {
+const DeploymentList = (props) => {
+  const dispatch = useDispatch();
   useEffect(() => {
-    getDeployments();
-  }, []);
+    dispatch(getDeployments());
+  }, [dispatch]);
 
   const onDeleteHandler = (id) => {
-    removeDeployment(id);
+    dispatch(removeDeployment(id));
   };
 
   const deployments = useSelector(state => state.deployment.deployments);
@@ -27,7 +28,7 @@ const DeploymentList = ({ getDeployments, removeDeployment }) => {
         {deployments.map((deployment, index) => {
           return (
             <Accordion defaultActiveKey={index} key={deployment._id}>
-              <Card>
+              <Card style={{margin : 10}}>
                 <Accordion.Toggle as={Card.Header} eventKey={index}>
                   <Button
                     style={{
@@ -64,6 +65,4 @@ const DeploymentList = ({ getDeployments, removeDeployment }) => {
   );
 };
 
-export default connect(null, { getDeployments, removeDeployment })(
-  DeploymentList
-);
+export default DeploymentList;

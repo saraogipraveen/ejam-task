@@ -11,7 +11,7 @@ function App() {
     <Provider store={store}>
       <div className="App">
         <Navbar bg="light" expand="lg">
-          <Navbar.Brand href="#">React Deployments</Navbar.Brand>
+          <Navbar.Brand >React Deployments</Navbar.Brand>
         </Navbar>
         <DeploymentForm />
         <DeploymentList />

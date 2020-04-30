@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import deploymentReducer from './deployment';
-import errorReducer from './error';
+import DeploymentReducer from './DeploymentReducer';
+import ErrorReducer from './ErrorReducer';
 
 export default combineReducers({
-  deployment: deploymentReducer,
-  errors: errorReducer
+  deployment: DeploymentReducer,
+  errors: ErrorReducer
 })

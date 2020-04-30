@@ -9,6 +9,8 @@ app.use(express.urlencoded({extended: false}))
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
+
   next();
 });
 
@@ -20,7 +22,7 @@ mongoose.connect(keys.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: tr
   .catch(err => console.log('Error in connecting to DB : ' + err.message));
 
 app.get('/', (req, res) => {
-  res.send('<h1>Home</h1>');
+  res.send('<h1>Server HomePage</h1>');
 })
 
 

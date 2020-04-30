@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { connect } from "react-redux";
-import { addDeployment } from "../../redux/actions/deploymentActions";
+import { addDeployment } from "../../redux/actions/DeploymentAction";
 import { Form, Button } from "react-bootstrap";
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 
-const DeploymentForm = (props) => {
+const DeploymentForm = () => {
   const errors = useSelector(state => state.errors);
+  const dispatch = useDispatch();
 
   const initialState = {
     url: "",
@@ -25,7 +25,7 @@ const DeploymentForm = (props) => {
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
-    props.addDeployment(state);
+    dispatch(addDeployment(state));
     setState(initialState);
   };
 
@@ -81,4 +81,4 @@ const DeploymentForm = (props) => {
   );
 };
 
-export default connect(null, { addDeployment })(DeploymentForm);
+export default DeploymentForm;
