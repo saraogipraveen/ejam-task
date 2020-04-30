@@ -7,7 +7,8 @@ export const REMOVE_DEPLOYMENT = 'REMOVE_DEPLOYMENT';
 export const GET_ERRORS = 'GET_ERRORS';
 
 
-let apiUrl = 'http://localhost:4500/';
+// let apiUrl = 'http://localhost:4500/';
+let apiUrl = 'https://ejam-deployment.herokuapp.com/';
 
 
 
